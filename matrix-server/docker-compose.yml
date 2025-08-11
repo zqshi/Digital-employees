@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  synapse:
+    image: matrixdotorg/synapse:latest
+    container_name: synapse
+    restart: unless-stopped
+    environment:
+      - SYNAPSE_SERVER_NAME=localhost
+      - SYNAPSE_REPORT_STATS=no
+      - SYNAPSE_ENABLE_REGISTRATION=true
+      - SYNAPSE_NO_TLS=yes
+    volumes:
+      - ./synapse-data:/data
+    ports:
+      - "8008:8008"
+      - "8448:8448"
+    command: ["start"]
+
+  postgres:
+    image: postgres:14
+    container_name: synapse-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=synapse
+      - POSTGRES_PASSWORD=synapse123
+      - POSTGRES_DB=synapse
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"

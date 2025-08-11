@@ -1,0 +1,36 @@
+server_name: "localhost"
+pid_file: /data/homeserver.pid
+listeners:
+  - port: 8008
+    tls: false
+    type: http
+    x_forwarded: true
+    bind_addresses: ['0.0.0.0']
+    resources:
+      - names: [client, federation]
+        compress: false
+
+database:
+  name: sqlite3
+  args:
+    database: /data/homeserver.db
+
+log_config: "/data/localhost.log.config"
+media_store_path: /data/media_store
+registration_shared_secret: "TEST_SECRET_DONT_USE_IN_PRODUCTION"
+report_stats: false
+macaroon_secret_key: "TEST_MACAROON_SECRET"
+form_secret: "TEST_FORM_SECRET"
+signing_key_path: "/data/localhost.signing.key"
+trusted_key_servers:
+  - server_name: "matrix.org"
+
+# 启用注册
+enable_registration: true
+enable_registration_without_verification: true
+
+# 允许访客
+allow_guest_access: true
+
+# 简化的配置，用于本地测试
+suppress_key_server_warning: true
