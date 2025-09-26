@@ -15,7 +15,11 @@ services:
     ports:
       - "8008:8008"
       - "8448:8448"
+<<<<<<< HEAD
     # Remove invalid command, use default
+=======
+    command: ["start"]
+>>>>>>> 75784c3a4cb176ab17452c006165822163eaad06
 
   postgres:
     image: postgres:14

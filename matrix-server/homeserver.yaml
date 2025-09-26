@@ -11,6 +11,7 @@ listeners:
         compress: false
 
 database:
+<<<<<<< HEAD
   name: psycopg2
   args:
     user: synapse
@@ -18,6 +19,11 @@ database:
     host: postgres
     port: 5432
     dbname: synapse
+=======
+  name: sqlite3
+  args:
+    database: /data/homeserver.db
+>>>>>>> 75784c3a4cb176ab17452c006165822163eaad06
 
 log_config: "/data/localhost.log.config"
 media_store_path: /data/media_store
