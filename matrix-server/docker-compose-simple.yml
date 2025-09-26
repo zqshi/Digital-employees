@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  synapse:
+    image: matrixdotorg/synapse:latest
+    container_name: matrix-synapse
+    restart: unless-stopped
+    environment:
+      - SYNAPSE_SERVER_NAME=localhost
+      - SYNAPSE_REPORT_STATS=no
+    volumes:
+      - ./synapse-data:/data
+    ports:
+      - "8008:8008"
+    command: ["run"]
